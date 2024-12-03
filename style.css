@@ -1,0 +1,307 @@
+/* dm-sans-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./assets/fonts/dm-sans-v15-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* dm-sans-500 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 500;
+  src: url('./assets/fonts/dm-sans-v15-latin-500.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+:root {
+  --purple-100: hsl(254, 88%, 90%);
+  --purple-500: hsl(256, 67%, 59%);
+  --yellow-100: hsl(31, 66%, 93%);
+  --yellow-500: hsl(39, 100%, 71%);
+  --white: hsl(0, 0%, 100%);
+  --black: hsl(0, 0%, 7%);
+  --clr-bkg: hsl(0 0% 96.1%);
+
+  --base-font-size: clamp(1rem, 0.956rem + 0.1878vw, 1.125rem);
+  --font-family-base: 'DM Sans';
+  --font-family-base-clr: var(--black);
+  --base-line-height: 1.5;
+  --heading-line-height: 0.9;
+}
+
+/* RESET */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+  font-family: var(--font-family-base);
+}
+
+h1,
+h2,
+h3,
+h4,
+button,
+input,
+label {
+  line-height: var(--heading-line-height);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: pretty;
+}
+
+p,
+li,
+figcaption {
+  max-width: var(--body-max-width);
+  text-wrap: pretty;
+}
+
+:first-child {
+  margin-block-start: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin-block-end: 0;
+}
+
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  line-height: var(--base-line-height);
+  font-size: var(--base-font-size);
+  color: var(--font-family-base-clr);
+  background-color: var(--clr-bkg);
+  font-weight: 400;
+}
+
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+img,
+picture {
+  max-width: 100%;
+  display: block;
+  font-style: italic;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* utilities */
+.flow > * + * {
+  margin-block-start: var(--flow-space, 1em);
+}
+
+.text--purple {
+  color: var(--purple-500);
+}
+.text--yellow {
+  color: var(--yellow-500);
+}
+
+.bg-purple-500 {
+  background-color: var(--purple-500);
+}
+.bg-purple-100 {
+  background-color: var(--purple-100);
+}
+.bg-yellow-500 {
+  background-color: var(--yellow-500);
+}
+.bg-yellow-100 {
+  background-color: var(--yellow-100);
+}
+.bg-white {
+  background-color: var(--white);
+}
+
+.primary-heading {
+  font-size: clamp(2.4883rem, 2.1556rem + 1.4196vw, 3.4332rem);
+  font-weight: 500;
+}
+.secondary-heading {
+  font-size: clamp(1.728rem, 1.5628rem + 0.705vw, 2.1973rem);
+  font-weight: 500;
+}
+
+/* components */
+.bento-grid {
+  display: grid;
+  gap: 2rem;
+  grid-auto-columns: 1fr;
+  grid-template-areas:
+    'heading'
+    'accounts'
+    'schedule'
+    'posts'
+    'followers'
+    'growth'
+    'create'
+    'ai';
+
+  padding-block: 2rem;
+  width: min(95%, 87rem);
+  margin-inline: auto;
+
+  @media (width > 37.5em) {
+    grid-template-areas:
+      'heading heading'
+      'accounts schedule'
+      'followers followers'
+      'posts ai'
+      'posts ai'
+      'growth create';
+  }
+
+  @media (width > 56.25em) {
+    grid-template-areas:
+      'create heading heading posts'
+      'create heading heading posts'
+      'create heading heading posts'
+      'create heading heading posts'
+      'create accounts schedule posts'
+      'ai     accounts schedule posts'
+      'ai     accounts schedule posts'
+      'ai     growth followers followers'
+      'ai     growth followers followers'
+      'ai     growth followers followers';
+  }
+}
+
+.bento-box {
+  padding: var(--space, 1.5rem);
+  border-radius: 1em;
+  overflow: hidden;
+}
+
+.heading {
+  grid-area: heading;
+  color: var(--white);
+  img {
+    margin-inline: auto;
+    width: 200px;
+  }
+  text-align: center;
+  @media (width > 56.25em) {
+    --space: 4rem;
+  }
+}
+.accounts {
+  grid-area: accounts;
+  @media (width > 56.25em) {
+    img {
+      max-width: 23rem;
+    }
+  }
+}
+.schedule {
+  grid-area: schedule;
+  padding-block-end: 0;
+  img {
+    width: 250px;
+    @media (width > 56.25em) {
+      position: relative;
+      margin-bottom: -8rem;
+    }
+  }
+  @media (width > 56.25em) {
+    --space: 2rem;
+  }
+}
+.posts {
+  grid-area: posts;
+  text-align: center;
+  @media (width > 56.25em) {
+    --space: 2rem;
+    text-align: left;
+    img {
+      max-width: 29rem;
+    }
+  }
+}
+.followers {
+  grid-area: followers;
+  padding-inline: 6rem;
+  color: var(--white);
+  img {
+    width: 250px;
+    margin-inline: auto;
+  }
+  @media (width > 56.25em) {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding-inline: 2rem;
+  }
+}
+.growth {
+  grid-area: growth;
+  img {
+    width: 200px;
+  }
+  .secondary-heading {
+    font-size: var(--base-font-size);
+  }
+}
+.create {
+  grid-area: create;
+  img {
+    width: 200px;
+  }
+  @media (width > 56.25em) {
+    img {
+      margin-inline: auto;
+      margin-top: 3rem;
+    }
+    padding-block: 5rem;
+  }
+}
+.ai {
+  grid-area: ai;
+  img {
+    width: 225px;
+  }
+  @media (width > 56.25em) {
+    img {
+      margin-top: 4rem;
+      width: 100%;
+    }
+  }
+}
